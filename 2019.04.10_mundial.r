@@ -57,8 +57,6 @@ ggplot(data = goles_arg_anio, aes(x = anio, y = goles_por_anio)) +
        y = "Año")
 
 ##visualizacion goles_anio
-library(ggrepel)
-
 goles_plot <- ggplot(goles_anio, aes(x=anio))+
   geom_line(aes(y = goles_arg), color = "blue") +
   geom_line(aes(y = goles_br), color = "green") +
@@ -68,6 +66,19 @@ goles_plot <- ggplot(goles_anio, aes(x=anio))+
        caption = "Fuente: Open Public Domain Football Data",
        x = "Goles",
        y = "Año")
+
+##visualización tercer intento
+ggplot(goles_anio, aes(x=anio)) +
+  geom_line(aes(y=goles_arg, colour = "Argentina")) +
+  geom_line(aes(y=goles_br, colour="Brasil")) +
+  geom_line(aes(y=goles_col, colour="Colombia")) +
+  scale_color_manual(values = c("blue", "green", "red"), name = "Paises" ) +
+  labs(title = "Total de goles por año",
+       subtitle = "#DatosDeMiércoles",
+       caption = "Fuente: Open Public Domain Football Data",
+       x = "Goles",
+       y = "Año")+
+  theme_classic()
 
 
 ggsave(goles_plot, filename = "goles por equipo.png", width = 14, height = 7)
